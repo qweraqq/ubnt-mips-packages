@@ -13,7 +13,7 @@ libev_ver=4.33
 # c-ares
 cares_ver=1.17.2
 # set path
-prefix_path='/opt/ss-mips'
+prefix_path='/opt'
 # mips use mipel-linux-gnu, mips64 use mips64-linux-gnuabi64, default is mips
 host=mipsel-linux-gnu
 strip=mipsel-linux-gnu-strip
