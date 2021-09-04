@@ -5,7 +5,7 @@ end="\033[0m"
 # shadowsocks version
 shadowsocks_ver=3.3.5
 # mbedtls
-mbedtls_ver=2.27.0
+mbedtls_ver=2.16.6
 # pcre
 pcre_ver=8.45
 # libev
@@ -15,6 +15,8 @@ cares_ver=1.17.2
 # set path
 prefix_path='/opt/ss-mips'
 # mips use mipel-linux-gnu, mips64 use mips64-linux-gnuabi64, default is mips
+host=mipsel-linux-gnu
+strip=mipsel-linux-gnu-strip
 if [ $ARCHITECH == "mips64" ]
 then
     host=mips64-linux-gnuabi64
@@ -25,6 +27,7 @@ else
 fi
 
 echo -e "$green Installing mbedtls...$end"
+cd $prefix_path
 wget --no-check-certificate https://tls.mbed.org/download/mbedtls-$mbedtls_ver-gpl.tgz \
     && tar xvf mbedtls-$mbedtls_ver-gpl.tgz \
     && cd mbedtls-$mbedtls_ver \
@@ -33,7 +36,7 @@ wget --no-check-certificate https://tls.mbed.org/download/mbedtls-$mbedtls_ver-g
     && make install
 
 echo -e "$green Installing pcre...$end"
-cd
+cd $prefix_path
 wget https://ftp.pcre.org/pub/pcre/pcre-$pcre_ver.tar.bz2 \
     && tar xvf pcre-$pcre_ver.tar.bz2 \
     && cd pcre-$pcre_ver \
@@ -42,7 +45,7 @@ wget https://ftp.pcre.org/pub/pcre/pcre-$pcre_ver.tar.bz2 \
     && make install
 
 echo -e "$green Installing libsodium...$end"
-cd
+cd $prefix_path
 git clone https://github.com/jedisct1/libsodium \
     && cd libsodium/ \
         && git checkout stable \
@@ -51,7 +54,7 @@ git clone https://github.com/jedisct1/libsodium \
     && make && make install
 
 echo -e "$green Installing libev...$end"
-cd
+cd $prefix_path
 wget http://dist.schmorp.de/libev/Attic/libev-$libev_ver.tar.gz \
     && tar xvf libev-$libev_ver.tar.gz \
     && cd libev-$libev_ver \
@@ -60,7 +63,7 @@ wget http://dist.schmorp.de/libev/Attic/libev-$libev_ver.tar.gz \
     && make install
 
 echo -e "$green Installing cares...$end"
-cd
+cd $prefix_path
 wget https://c-ares.haxx.se/download/c-ares-$cares_ver.tar.gz \
     && tar xvf c-ares-$cares_ver.tar.gz \
     && cd c-ares-$cares_ver \
@@ -69,7 +72,7 @@ wget https://c-ares.haxx.se/download/c-ares-$cares_ver.tar.gz \
     && make install
 
 echo -e "$green Installing shadowsocks-libev...$end"
-cd
+cd $prefix_path
 git clone https://github.com/shadowsocks/shadowsocks-libev
 cd shadowsocks-libev
 git checkout v$shadowsocks_ver -b v$shadowsocks_ver
