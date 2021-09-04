@@ -3,15 +3,15 @@
 green="\033[0;32m"
 end="\033[0m"
 # shadowsocks version
-shadowsocks_ver=3.3.4
+shadowsocks_ver=3.3.5
 # mbedtls
-mbedtls_ver=2.6.0
+mbedtls_ver=2.27.0
 # pcre
-pcre_ver=8.43
+pcre_ver=8.45
 # libev
-libev_ver=4.25
+libev_ver=4.33
 # c-ares
-cares_ver=1.13.0
+cares_ver=1.17.2
 # set path
 prefix_path='/opt/ss-mips'
 # mips use mipel-linux-gnu, mips64 use mips64-linux-gnuabi64, default is mips
@@ -84,26 +84,6 @@ CFLAGS="-I$prefix_path/libev/include" \
 --with-pcre=$prefix_path/pcre \
 --with-cares=$prefix_path/libcares \
 --with-sodium=$prefix_path/libsodium \
-&& make \
-&& make install
-
-echo -e "$green Installing simple-obfs...$end"
-cd
-git clone https://github.com/shadowsocks/simple-obfs
-cd simple-obfs
-git submodule init && git submodule update
-./autogen.sh
-LIBS="-lpthread -lm" \
-LDFLAGS="-Wl,-static -static -static-libgcc \
--L$prefix_path/libsodium/lib \
--L$prefix_path/libev/lib \
--L$prefix_path/libcares/lib" \
-CFLAGS="-I$prefix_path/libsodium/include \
--I$prefix_path/libev/include \
--I$prefix_path/libcares/include" \
-./configure --host=$host  --prefix=$prefix_path/ss-bin \
---disable-ssp \
---disable-documentation \
 && make \
 && make install
 
