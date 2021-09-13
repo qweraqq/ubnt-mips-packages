@@ -1,5 +1,4 @@
 From buildpack-deps:xenial-scm
-LABEL maintainer="MMX <4isnothing@gmail.com>"
 
 ENV ARCHITECH=mips
 WORKDIR /opt/
