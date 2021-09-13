@@ -5,8 +5,8 @@
 
 ## 使用方法
 ```bash
-docker build --tag ubnt-mips-packages .
-docker run -it --name ubnt-mips-packages ubnt-mips-packages
+docker build --tag qweraqq/ubnt-mips-packages:20210913 .
+docker run -it --name ubnt-mips-packages qweraqq/ubnt-mips-packages:20210913
 docker cp ubnt-mips-packages:/opt/ss-mips/ss-bin .
 ```  
 ## mips 与 mips64
@@ -15,7 +15,5 @@ docker cp ubnt-mips-packages:/opt/ss-mips/ss-bin .
 Controlled by ENV ARCHITECH, default build mips, you can set ARCHITECH="mips64" to build mips64 file.
 
 ```bash
-docker run -it --name ubnt-mips-packages -e ARCHITECH="mips64" ubnt-mips-packages
+docker run -it --name ubnt-mips-packages -e ARCHITECH="mips64" qweraqq/ubnt-mips-packages:20210913
 ```
-
-
